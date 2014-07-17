@@ -27,8 +27,15 @@ USAGE
 1) Run the script.
 2) Select one or more objects.
 3) Click "Generate".
-4) An "Edit Normals" modifier will be added to selection.
-5) To
+4) An Edit Normals modifier will be added to selection named "Weighted Normals".
+
+To update the normals after changing the mesh geometry, select the object, and
+click "Generate".
+
+If you have another Edit Normals modifier with manually tweaked normals on top
+of a "Weighted Normals" modifier, a new "Weighted Normals" modifier will be
+added at the top of the stack. Only the topmost Edit Normals modifier can be
+accessed due to a 3dsmax bug.
 
 
 LICENSE

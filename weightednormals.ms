@@ -1,14 +1,46 @@
 -- WEIGHTEDNORMALS.MS
 
--- Computes Weighted Surface Normals
+-- Computes Weighted Vertex Normals
 -- by Martijn Buijs, 2014
 -- www.bytehazard.com
+
+-- 3DSMAX bugs encountered:
+-- 1) .modifiers[#Edit_Normals] doesn't work on renamed modifiers for no
+--     apparant reason
+-- 2) We can only ever modify the topmost Edit_Normals modifier, even if we
+--    properly access it through its handle. So if there's another Edit_Normals
+--    modifier on the stack, we add a new modifier, so the user won't have his
+--    changes overwritten.
+-- 3) During testing, the script twice crashed on some geometry lacking
+--    smoothing groups. Unable to reproduce.
+
+global wnmodname = "Weighted Normals"
 
 
 -- returns angle between two vectors
 fn AngleBetweenVectors v1 v2 =
 (
  return (acos (dot (normalize v1) (normalize v2) ) )
+)
+
+
+-- get weighted normals modifier
+
+fn GetModifier obj =
+(
+ for i=1 to obj.modifiers.count do
+ (
+ 	local mf = obj.modifiers[i]
+ 	if (classof mf) == Edit_Normals do
+ 	(
+ 	 if (mf.name == wnmodname) then (
+ 	  return mf
+ 	 ) else (
+ 	  return undefined
+ 	 )
+ 	)
+ )
+ return undefined
 )
 
 
@@ -23,16 +55,16 @@ fn GenWeightedNormals obj =
  (
   addModifier obj (Edit_Mesh())
  )
-
- -- detect existing Edit_Normals modifier
- local mf = obj.modifiers[#Edit_Normals]
  
- -- no modifier found, create one
+ -- detect existing modifier
+ local mf = GetModifier obj
+ 
+ -- modifier not found, create one
  if mf == undefined do
  (
   addModifier obj (Edit_Normals())
   mf = obj.modifiers[#Edit_Normals]
-  --mf.name = "Weighted Normals"
+  mf.name = wnmodname
  )
  
  -- workaround for 3dsmax bug
