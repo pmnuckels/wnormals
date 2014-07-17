@@ -2,11 +2,15 @@ INTRODUCTION
 
 This MaxScript generates Weighted Vertex Normals for any arbitrary geometry.
 
+It should be compatible with 3dsmax 9 and up. No dependecies on this script are
+added to scene files, so it is fully compatible for other users who don't have
+this script installed.
+
 'Weighting' of vertex normals means that each face normal contribution is
-scaled by some property of the triangle. This script uses the triangle surface
-area and corner angle as influences. The result of this is that a small
-triangle will have less influence on shading of its larger neighbor. Likewise,
-the neighbor will have larger influence on the shading of the smaller neighbor.
+scaled by a property of the triangle. This script uses the triangle surface area
+and corner angle as influences. The result of this is that a small triangle will
+have less influence on shading of its larger neighbor. Likewise, the neighbor
+will have larger influence on the shading of the smaller neighbor.
 
 This effect is typically most visible on chamfered boxes, but enhances all types
 of geometry. All geometry with proper weighted vertex normals is mathematically
@@ -19,7 +23,7 @@ http://www.bytehazard.com/code/vertnorm.html
 Note: Using this script on the 3dsmax teapot primitive will result in some
       artifacts, mainly at the bottom. This is not a problem with this script
       but a longstanding problem in 3dsmax. The 3dsmax teapot has degenerate
-      triangles at the top and bottom pole, and thus needs some manual cleanup.
+      triangles at the top and bottom poles, and thus needs some manual cleanup.
 
 
 USAGE
