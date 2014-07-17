@@ -30,15 +30,15 @@ fn GetModifier obj =
 (
  for i=1 to obj.modifiers.count do
  (
- 	local mf = obj.modifiers[i]
- 	if (classof mf) == Edit_Normals do
- 	(
- 	 if (mf.name == wnmodname) then (
- 	  return mf
- 	 ) else (
- 	  return undefined
- 	 )
- 	)
+  local mf = obj.modifiers[i]
+  if (classof mf) == Edit_Normals do
+  (
+   if (mf.name == wnmodname) then (
+    return mf
+   ) else (
+    return undefined
+   )
+  )
  )
  return undefined
 )
