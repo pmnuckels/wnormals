@@ -12,6 +12,9 @@ and corner angle as influences. The result of this is that a small triangle will
 have less influence on shading of its larger neighbor. Likewise, the neighbor
 will have larger influence on the shading of the smaller neighbor.
 
+See this illustration:
+https://github.com/ByteHazard/wnormals/blob/master/wnormals.png
+
 This effect is typically most visible on chamfered boxes, but enhances all types
 of geometry. All geometry with proper weighted vertex normals is mathematically
 guaranteed to produce more aesthetically appealing shading than the default
